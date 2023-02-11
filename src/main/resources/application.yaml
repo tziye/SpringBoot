@@ -1,0 +1,82 @@
+server:
+  port: 9999
+  servlet:
+    context-path: /
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 10
+    max-connections: 8192
+    accept-count: 100
+    connection-timeout: 5000
+    keep-alive-timeout: 10000
+    max-keep-alive-requests: 100
+
+
+spring:
+  application:
+    name: springboot
+  profiles:
+    active: dev  # 当前环境
+  main:
+    lazy-initialization: false  # 是否懒加载bean
+  cache:
+    type: hazelcast  # 缓存配置
+  session:  # session配置
+    store-type: hazelcast
+    timeout: 60
+    hazelcast:
+      map-name: session
+      flush-mode: ON_SAVE
+  jackson:  # jackson配置
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:  # thymeleaf配置
+    prefix: classpath:/templates/
+    cache: false
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  mail:
+    host: smtp.qq.com
+    username: 1244818233@qq.com
+    password: gdbvhmvvxlyngbac
+    default-encoding: UTF-8
+
+
+# 监控配置
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+  file:
+    name: log/app.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{0}[::%M %F:%L] - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{0}[::%M %F:%L] - %msg%n"
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+      max-history: 5
+      total-size-cap: 1GB
+      clean-history-on-start: true
+
+
+# mybatis
+mybatis:
+  mapper-locations: classpath*:mybatis/*.xml
+  type-aliases-package: com.mybatis
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+pagehelper:
+  auto-dialect: true

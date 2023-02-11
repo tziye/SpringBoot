@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
+        <delay>5000</delay>
+    </shutdownHook>
+
+    <property name="LOG_HOME" value="${application.home:-.}/log"/>
+    <property name="ENCODER_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level [%thread] %logger{50} - %msg%n"/>
+    <property name="MAX_HISTORY" value="7"/>
+    <property name="DISCARDING_THRESHOLD" value="0"/>
+    <property name="MAX_FILE_SIZE" value="200MB"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${ENCODER_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RUN" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>${DISCARDING_THRESHOLD}</discardingThreshold>
+        <appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_HOME}/run/run_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+                <MaxHistory>${MAX_HISTORY}</MaxHistory>
+                <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <MaxFileSize>${MAX_FILE_SIZE}</MaxFileSize>
+                </TimeBasedFileNamingAndTriggeringPolicy>
+            </rollingPolicy>
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>info</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${ENCODER_PATTERN}</pattern>
+            </encoder>
+        </appender>
+    </appender>
+
+    <appender name="WEB-LOG" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>${DISCARDING_THRESHOLD}</discardingThreshold>
+        <appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_HOME}/web-log/web-log_%d{yyyy-MM-dd}.%i.log
+                </FileNamePattern>
+                <MaxHistory>${MAX_HISTORY}</MaxHistory>
+                <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <MaxFileSize>${MAX_FILE_SIZE}</MaxFileSize>
+                </TimeBasedFileNamingAndTriggeringPolicy>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${ENCODER_PATTERN}</pattern>
+            </encoder>
+        </appender>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="RUN"/>
+    </root>
+
+    <logger name="web-log" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="WEB-LOG"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+</configuration>

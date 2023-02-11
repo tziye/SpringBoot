@@ -52,9 +52,9 @@ public class BeanLifeCycle implements InitializingBean, BeanNameAware, Disposabl
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        BeanLifeCycle cycle = (BeanLifeCycle) applicationContext.getBean(BEAN_NAME);
+//        BeanLifeCycle cycle = (BeanLifeCycle) applicationContext.getBean(BEAN_NAME);
         log.info("【Bean生命周期】3-7.调用ApplicationContext.setApplicationContext()");
-        log.info("{}", cycle);
+//        log.info("{}", cycle);
     }
 
     @PostConstruct

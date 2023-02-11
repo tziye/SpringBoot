@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Slf4j
-public class RepositoryTest extends ElasticsearchApplicationTest {
+class RepositoryTest extends ElasticsearchApplicationTest {
 
     @Autowired
     ConferenceRepository repository;

@@ -14,13 +14,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
-public class HighLevelClientTest extends ElasticsearchApplicationTest {
+class HighLevelClientTest extends ElasticsearchApplicationTest {
 
     @Autowired
-    private RestHighLevelClient restHighLevelClient;
+    RestHighLevelClient restHighLevelClient;
 
     @Test
-    public void textSearch() throws Exception {
+    void textSearch() throws Exception {
         String expectedWord = "java";
         String expectedDate = "2014-10-29";
 
@@ -43,7 +43,7 @@ public class HighLevelClientTest extends ElasticsearchApplicationTest {
     }
 
     @Test
-    public void geoSpatialSearch() throws Exception {
+    void geoSpatialSearch() throws Exception {
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         queryBuilder.filter(QueryBuilders.geoDistanceQuery("location").distance("530km").point(50.0646501D, 19.9449799D));

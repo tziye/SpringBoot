@@ -1,7 +1,7 @@
 @host = 127.0.0.1:9999
 
 ### request
-GET http://{{host}}/request/method HTTP/1.1
+GET http://127.0.0.1:9999/request/method HTTP/1.1
 
 ###
 GET http://{{host}}/request/param?name=tyf&age=23 HTTP/1.1
@@ -212,3 +212,17 @@ GET http://{{host}}/quartz/start HTTP/1.1
 
 ###
 GET http://{{host}}/quartz/shutdown HTTP/1.1
+
+
+@token = eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NDM3MzQyMTcsImlhdCI6MTY0MzY5ODIxNywic2NvcGUiOiJhcHAifQ.iKYuxuJxPmRiQNEXisQqVBmGpY2AjgDbj0h_c1pbobI7g8fFiRuZ91C-PseUmxUiHEllZGdQMT5thh6coHiA5wxdFxeG2HAjJ0cnWe0HHBh38NlWHn-nFz3SDp0FKwUrW5dmcT0jsip0TWflFUVN2xnurAtJICuAP3zKr9g5wFg65X1c1-bjAMbf2FqiSS7w4SD7GibbEOGWQeBrZFOdhLxq7FDMkRHbBh1u75QFj2QbuvqN18LOcBV2CtUS0nU4dUFqisK-iIyCmkT5xM-iK9EAMao3pJHMIBFOm1IpBzHd1WQO0S_DcanURrY9jblnxpOslukg5m3rkf5AlFgzCw
+
+###
+GET http://127.0.0.1:9999/security/token HTTP/1.1
+Authorization: Basic admin:123456
+
+###
+GET http://127.0.0.1:9999/security/hello HTTP/1.1
+Authorization: bearer {{token}}
+Content-Type: application/x-www-form-urlencoded
+
+###

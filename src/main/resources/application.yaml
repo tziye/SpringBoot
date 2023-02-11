@@ -70,6 +70,10 @@ logging:
       total-size-cap: 1GB
       clean-history-on-start: true
 
+# jwt
+jwt:
+  private.key: classpath:security/app.key
+  public.key: classpath:security/app.pub
 
 # mybatis
 mybatis:

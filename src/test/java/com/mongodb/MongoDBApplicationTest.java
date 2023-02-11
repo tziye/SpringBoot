@@ -4,13 +4,19 @@ import com.mongodb.customer.*;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Offset;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.elasticsearch.client.ClientConfiguration;
+import org.springframework.data.elasticsearch.client.RestClients;
+import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
@@ -28,7 +34,7 @@ import java.util.stream.Stream;
 @Slf4j
 @ActiveProfiles("unit")
 @DataMongoTest
-public class MongoDBApplicationTest {
+class MongoDBApplicationTest {
 
     @Autowired
     private MongoTemplate template;
@@ -47,14 +53,14 @@ public class MongoDBApplicationTest {
     }
 
     @Test
-    public void setsIdOnSave() {
+    void setsIdOnSave() {
         Customer mary = repository.save(new Customer("Dave", "Matthews"));
         log.info("result: {}", mary);
         Assertions.assertThat(mary.getId()).isNotNull();
     }
 
     @Test
-    public void findCustomersUsingSort() {
+    void findCustomersUsingSort() {
         List<Customer> result = repository.findByLastname("Matthews", Sort.by(Sort.Order.asc("firstname")));
         log.info("result: {}", result);
         Assertions.assertThat(result).hasSize(2);
@@ -63,7 +69,7 @@ public class MongoDBApplicationTest {
     }
 
     @Test
-    public void exposesGeoSpatialFunctionality() {
+    void exposesGeoSpatialFunctionality() {
         GeospatialIndex indexDefinition = new GeospatialIndex("address.location");
         indexDefinition.getIndexOptions().put("min", -180);
         indexDefinition.getIndexOptions().put("max", 180);

@@ -12,7 +12,6 @@ server:
     keep-alive-timeout: 10000
     max-keep-alive-requests: 100
 
-
 spring:
   application:
     name: springboot
@@ -20,8 +19,6 @@ spring:
     active: dev  # 当前环境
   main:
     lazy-initialization: false  # 是否懒加载bean
-  cache:
-    type: hazelcast  # 缓存配置
   session:  # session配置
     store-type: hazelcast
     timeout: 60
@@ -74,13 +71,3 @@ logging:
 jwt:
   private.key: classpath:security/app.key
   public.key: classpath:security/app.pub
-
-# mybatis
-mybatis:
-  mapper-locations: classpath*:mybatis/*.xml
-  type-aliases-package: com.mybatis
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-pagehelper:
-  auto-dialect: true

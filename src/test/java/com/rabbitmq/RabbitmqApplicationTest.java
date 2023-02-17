@@ -1,5 +1,6 @@
 package com.rabbitmq;
 
+import com.common.util.MyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @EnableAutoConfiguration(exclude = {
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 @Import(RabbitmqConfig.class)
 @ActiveProfiles("unit")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RabbitmqApplicationTest {
+class RabbitmqApplicationTest {
 
     @Autowired
     RabbitmqConfig rabbitmqConfig;
@@ -51,13 +51,13 @@ public class RabbitmqApplicationTest {
     void producer() throws Exception {
         for (int i = 0; i < 1; i++) {
             rabbitTemplate.convertAndSend(RabbitmqConfig.DIRECT_EXCHANGE, RabbitmqConfig.DIRECT_ROUTING_KEY, "这是发往DIRECT_EXCHANGE的第" + i + "条消息");
-            TimeUnit.SECONDS.sleep(2);
+            MyUtil.sleep(2);
 
             rabbitTemplate.convertAndSend(RabbitmqConfig.FANOUT_EXCHANGE, null, "这是发往FANOUT_EXCHANGE的第" + i + "条消息");
-            TimeUnit.SECONDS.sleep(2);
+            MyUtil.sleep(2);
 
             rabbitTemplate.convertAndSend(RabbitmqConfig.TOPIC_EXCHANGE, RabbitmqConfig.TOPIC_ROUTING_KEY_C, "这是发往TOPIC_EXCHANGE的第" + i + "条消息");
-            TimeUnit.SECONDS.sleep(2);
+            MyUtil.sleep(2);
 
             Map<String, Object> map = new HashMap<>();
             map.put(RabbitmqConfig.HEADERS_KEY_1, RabbitmqConfig.HEADERS_VALUE_C_1);
@@ -68,7 +68,7 @@ public class RabbitmqApplicationTest {
             messageProperties.getHeaders().putAll(map);
             Message message = new Message(("这是发往HEADERS_EXCHANGE的第" + i + "条消息").getBytes(), messageProperties);
             rabbitTemplate.convertAndSend(RabbitmqConfig.HEADERS_EXCHANGE, null, message);
-            TimeUnit.SECONDS.sleep(2);
+            MyUtil.sleep(2);
         }
     }
 

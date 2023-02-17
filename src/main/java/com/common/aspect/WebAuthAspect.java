@@ -21,7 +21,7 @@ public class WebAuthAspect {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
         WebAuth annotation = method.getAnnotation(WebAuth.class);
-        if (!Objects.equals("OK", annotation.value())) {
+        if (!Objects.equals(true, annotation.value())) {
             throw new BizException("无权访问");
         }
     }

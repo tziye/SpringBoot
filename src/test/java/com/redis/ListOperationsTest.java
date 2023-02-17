@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.data.redis.core.ListOperations;
 
 @Slf4j
-public class ListOperationsTest extends RedisApplicationTest {
+class ListOperationsTest extends RedisApplicationTest {
 
     ListOperations<String, Object> listOpts;
 

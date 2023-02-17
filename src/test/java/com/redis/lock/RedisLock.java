@@ -11,11 +11,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class RedisLock {
 
-     boolean locked;
-     String key;
-     String value;
-     int expireTime;
-     int timeout;
+    boolean locked;
+    String key;
+    String value;
+    int expireTime;
+    int timeout;
 
     public static RedisLock of(String key) {
         RedisLock lock = new RedisLock();

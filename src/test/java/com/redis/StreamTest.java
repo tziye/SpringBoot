@@ -1,5 +1,6 @@
 package com.redis;
 
+import com.common.util.MyUtil;
 import com.redis.stream.CapturingStreamListener;
 import com.redis.stream.SensorData;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +16,9 @@ import org.springframework.data.redis.core.StreamOperations;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class StreamTest extends RedisApplicationTest {
+class StreamTest extends RedisApplicationTest {
 
     @Autowired
     StreamMessageListenerContainer<String, MapRecord<String, String, String>> messageListenerContainer;
@@ -31,7 +31,7 @@ public class StreamTest extends RedisApplicationTest {
     }
 
     @Test
-    void basics() {
+    void basic() {
         RecordId fixedId1 = streamOpts.add(SensorData.RECORD_1234_0);
         RecordId fixedId2 = streamOpts.add(SensorData.RECORD_1234_1);
         Assertions.assertThat(fixedId1).isEqualTo(SensorData.RECORD_1234_0.getId());
@@ -52,7 +52,7 @@ public class StreamTest extends RedisApplicationTest {
         }
         CapturingStreamListener streamListener = new CapturingStreamListener();
         messageListenerContainer.receive(StreamOffset.fromStart(SensorData.KEY), streamListener);
-        TimeUnit.MILLISECONDS.sleep(100);
+        MyUtil.sleepMilli(100);
         Assertions.assertThat(streamListener.recordsReceived()).isEqualTo(0);
 
         streamOpts.add(SensorData.RECORD_1234_0);

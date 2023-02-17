@@ -9,5 +9,5 @@ import java.lang.annotation.*;
 @Inheritance
 public @interface WebAuth {
 
-    String value() default "";
+    boolean value() default true;
 }

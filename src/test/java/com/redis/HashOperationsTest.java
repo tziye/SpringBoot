@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class HashOperationsTest extends RedisApplicationTest {
+class HashOperationsTest extends RedisApplicationTest {
 
     HashOperations<String, String, Object> hashOpts;
 

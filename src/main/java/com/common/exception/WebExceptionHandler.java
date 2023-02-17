@@ -12,7 +12,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 /**
- * 全局异常处理类，只能处理通过controller层进来后产生的异常
+ * 全局异常处理类，只能处理通过Controller层进来后产生的异常
  */
 @Slf4j
 @ResponseBody

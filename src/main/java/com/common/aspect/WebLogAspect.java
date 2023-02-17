@@ -1,13 +1,11 @@
 package com.common.aspect;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.util.RequestIpUtil;
+import com.common.util.RequestIpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,13 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j(topic = "web-log")
 public class WebLogAspect {
 
-    @Autowired
-    private ObjectMapper mapper;
-
     /**
      * 指定切点
      */
-    @Pointcut(value = "execution(* com.controller..*.*Controller.*(..))")
+    @Pointcut(value = "execution(* com.function..*.*Controller.*(..))")
     public void pointcut() {
     }
 

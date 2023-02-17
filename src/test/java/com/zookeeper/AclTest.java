@@ -17,7 +17,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Slf4j
-public class AclTest extends ZookeeperApplicationTest {
+class AclTest extends ZookeeperApplicationTest {
 
     @BeforeEach
     void before() {

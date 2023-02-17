@@ -10,14 +10,14 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static final int SUCCESS = 1;
-    private static final int FAIL = 0;
-    private static final int ERROR = -1;
+    static int SUCCESS = 1;
+    static int FAIL = 0;
+    static int ERROR = -1;
 
-    private boolean success;
-    private int code;
-    private T data;
-    private String message;
+    boolean success;
+    int code;
+    T data;
+    String message;
 
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>();

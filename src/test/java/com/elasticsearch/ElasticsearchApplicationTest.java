@@ -29,7 +29,7 @@ import java.util.List;
 @ActiveProfiles("unit")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "spring.main.allow-bean-definition-overriding=true")
-public class ElasticsearchApplicationTest {
+class ElasticsearchApplicationTest {
 
     @Autowired
     ElasticsearchOperations operations;

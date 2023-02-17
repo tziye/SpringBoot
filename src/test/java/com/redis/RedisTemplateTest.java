@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import java.util.List;
 
 @Slf4j
-public class RedisTemplateTest extends RedisApplicationTest {
+class RedisTemplateTest extends RedisApplicationTest {
 
     @Test
     void execute() {

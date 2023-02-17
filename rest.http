@@ -1,39 +1,30 @@
-@host = 127.0.0.1:9999
-
 ### request
-GET http://127.0.0.1:9999/request/method HTTP/1.1
-
-###
-GET http://{{host}}/request/param?name=tyf&age=23 HTTP/1.1
-
-###
-GET http://{{host}}/request/header HTTP/1.1
-content-type: text/*
-
-###
-POST http://{{host}}/request/contentType HTTP/1.1
+GET http://127.0.0.1:9999/request/limit?name=tyf&age=18
 content-type: application/json
-
-
-### param
-GET http://{{host}}/param/servletParam HTTP/1.1
+myHeader: big
 
 ###
-GET http://{{host}}/param/requestParam?id=1&name=tyf&time=2020-11-24 12:00:00 HTTP/1.1
+GET http://127.0.0.1:9999/request/servlet
 
 ###
-GET http://{{host}}/param/requestParamObject?id=1&name=tyf&age=25&gender=BOY&enabled=true&time=2020-11-24 12:00:00 HTTP/1.1
+GET http://127.0.0.1:9999/request/param?id=1&name=tyf&time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-GET http://{{host}}/param/urlParam/p1/p2 HTTP/1.1
+GET http://127.0.0.1:9999/request/paramObject?id=1&name=tyf&age=25&time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-GET http://{{host}}/param/headerParam HTTP/1.1
+GET http://127.0.0.1:9999/request/url/p1/p2
+
+###
+GET http://127.0.0.1:9999/request/urlMap/p1/p2
+
+###
+GET http://127.0.0.1:9999/request/header
 content-type: application/json
-X-Custom-Header: 2020-11-24 12:00:00
+X-Custom-Header: Mon Oct 29 17:16:04 CST 2018
 
 ###
-POST http://{{host}}/param/formParam HTTP/1.1
+POST http://127.0.0.1:9999/request/form
 content-type: application/x-www-form-urlencoded
 
 id=1
@@ -41,10 +32,10 @@ id=1
 &age=25
 &gender=BOY
 &enabled=true
-&time=2020-11-24 12:00:00
+&time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-POST http://{{host}}/param/contentParam HTTP/1.1
+POST http://127.0.0.1:9999/request/json
 content-type: application/json
 
 {
@@ -57,7 +48,7 @@ content-type: application/json
 }
 
 ###
-POST http://{{host}}/param/allRequestParam HTTP/1.1
+POST http://127.0.0.1:9999/request/entity
 content-type: application/json
 
 {
@@ -68,123 +59,21 @@ content-type: application/json
     "gender":"BOY",
     "time":"2020-11-24 12:00:00"
 }
-
 
 ### response
-GET http://{{host}}/response/ HTTP/1.1
+GET http://127.0.0.1:9999/response/
 
 ###
-GET http://{{host}}/response/board HTTP/1.1
+GET http://127.0.0.1:9999/response/board
 
 ###
-GET http://{{host}}/response/user1/1 HTTP/1.1
+GET http://127.0.0.1:9999/response/user1/1
 
 ###
-GET http://{{host}}/response/user2/2 HTTP/1.1
-
-
-### event
-GET http://{{host}}/event/send?message=123 HTTP/1.1
-
-
-### schedule
-GET http://{{host}}/schedule/async HTTP/1.1
-
-
-### cache
-GET http://{{host}}/cache/userCache?id=1&name=tyf HTTP/1.1
-
-###
-GET http://{{host}}/cache/userPOST?id=1&name=tyf HTTP/1.1
-
-###
-GET http://{{host}}/cache/userEvict HTTP/1.1
-
-
-### jpa
-GET http://{{host}}/jpa/save HTTP/1.1
-
-###
-GET http://{{host}}/jpa/findByNameAndAge?name=A&age=50 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/findByObject?name=A&age=50 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/findVo?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/sort HTTP/1.1
-
-###
-GET http://{{host}}/jpa/page?name=A&page=1&size=5 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/example?name=A&age=91 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/specification?name=A&age=50&page=1&size=5 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/cache?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/lock?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/entityManager?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/jdbcTemplate?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/update?name=A&age=100 HTTP/1.1
-
-###
-GET http://{{host}}/jpa/delete?name=A HTTP/1.1
-
-###
-GET http://{{host}}/jpa/mappingSave HTTP/1.1
-
-###
-GET http://{{host}}/jpa/mappingFindSinger HTTP/1.1
-
-###
-GET http://{{host}}/jpa/mappingFindSong HTTP/1.1
-
-###
-GET http://{{host}}/jpa/mappingDelete HTTP/1.1
-
-###
-GET http://{{host}}/jpa/transaction HTTP/1.1
-
-###
-GET http://{{host}}/jpa/transaction2 HTTP/1.1
-
-
-### mail
-GET http://{{host}}/mail/send HTTP/1.1
-
-
-### properties
-GET http://{{host}}/properties/userBean HTTP/1.1
-
-###
-GET http://{{host}}/properties/acme HTTP/1.1
-
-###
-GET http://{{host}}/properties/value HTTP/1.1
-
-###
-GET http://{{host}}/properties/env HTTP/1.1
-
-
-### rest
-GET http://{{host}}/rest/restTemplate HTTP/1.1
-
+GET http://127.0.0.1:9999/response/user2/2
 
 ### valid
-POST http://{{host}}/valid/validVo HTTP/1.1
+POST http://127.0.0.1:9999/valid/validDto
 content-type: application/json
 
 {
@@ -197,32 +86,25 @@ content-type: application/json
 }
 
 ###
-POST http://{{host}}/valid/validParam HTTP/1.1
+POST http://127.0.0.1:9999/valid/validParam
 content-type: application/x-www-form-urlencoded
 
 id=1
 &name=tyf
 
 ###
-GET http://{{host}}/valid/validAuth HTTP/1.1
+POST http://127.0.0.1:9999/valid/validAuth
 
+### download
+GET http://127.0.0.1:9999/file/download
 
-### quartz
-GET http://{{host}}/quartz/start HTTP/1.1
-
-###
-GET http://{{host}}/quartz/shutdown HTTP/1.1
-
-
-@token = eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NDM3MzQyMTcsImlhdCI6MTY0MzY5ODIxNywic2NvcGUiOiJhcHAifQ.iKYuxuJxPmRiQNEXisQqVBmGpY2AjgDbj0h_c1pbobI7g8fFiRuZ91C-PseUmxUiHEllZGdQMT5thh6coHiA5wxdFxeG2HAjJ0cnWe0HHBh38NlWHn-nFz3SDp0FKwUrW5dmcT0jsip0TWflFUVN2xnurAtJICuAP3zKr9g5wFg65X1c1-bjAMbf2FqiSS7w4SD7GibbEOGWQeBrZFOdhLxq7FDMkRHbBh1u75QFj2QbuvqN18LOcBV2CtUS0nU4dUFqisK-iIyCmkT5xM-iK9EAMao3pJHMIBFOm1IpBzHd1WQO0S_DcanURrY9jblnxpOslukg5m3rkf5AlFgzCw
-
-###
-GET http://127.0.0.1:9999/security/token HTTP/1.1
+### Security
+GET http://127.0.0.1:9999/security/token
 Authorization: Basic admin:123456
 
 ###
-GET http://127.0.0.1:9999/security/hello HTTP/1.1
-Authorization: bearer {{token}}
+GET http://127.0.0.1:9999/security/hello
+Authorization: bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NzYyOTM1MTUsImlhdCI6MTY3NjI1NzUxNSwic2NvcGUiOiJhcHAifQ.mCUR6XFj63eURVSwmINfw4laheB0fzfO3Ip3DkaNXL1u50WyirIr6xtX4cxc9fDYTpPaS18LSbvkJPFxIlCUf_Xu-8TFsCTWKSwPR_Ph1K22EewDqangkQwF7uTzAOpx7qwYpPgvPcWICvhrrh6KZNqJPQUm0fXfmRxHY2v71hJXl0CtXJ9zYiZNzcWRyb3Q5k5e0IWE1ITnSedVuAHEbCQlsUuoPT27zIWvpG1RO9uc-PFp4wkWFvPHQaJX3yqijbF5kcGLaxTTN7EoljpUCfqjoTSqliOQzktauXTSsAJJMWnAE7CWtDIc7Yxvfv_HmW9qk-_0P9j91amxljn7WQ
 Content-Type: application/x-www-form-urlencoded
 
 ###

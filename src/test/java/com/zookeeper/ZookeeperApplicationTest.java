@@ -32,15 +32,15 @@ import java.util.concurrent.CountDownLatch;
 @Import(ZookeeperApplicationTest.ZookeeperConfig.class)
 @ActiveProfiles("unit")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ZookeeperApplicationTest {
+class ZookeeperApplicationTest {
 
     @TestConfiguration
     static class ZookeeperConfig {
         @Value("${zookeeper.address}")
-        private String connectString;
+        String connectString;
 
         @Value("${zookeeper.timeout}")
-        private int timeout;
+        int timeout;
 
         @Bean(name = "zk")
         public ZooKeeper zk() {

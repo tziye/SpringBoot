@@ -1,7 +1,7 @@
 package com.elasticsearch;
 
+import com.common.util.MyUtil;
 import com.elasticsearch.conference.Conference;
-import com.util.MyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 
 @Slf4j
-public class OperationsTest extends ElasticsearchApplicationTest {
+class OperationsTest extends ElasticsearchApplicationTest {
 
     @Test
     void textSearch() {

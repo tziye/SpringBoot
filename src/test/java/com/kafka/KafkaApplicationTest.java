@@ -1,6 +1,6 @@
 package com.kafka;
 
-import com.util.MyUtil;
+import com.common.util.MyUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,7 +50,7 @@ import java.io.*;
 @Import(KafkaApplicationTest.KafkaConfig.class)
 @ActiveProfiles("unit")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class KafkaApplicationTest {
+class KafkaApplicationTest {
 
     static final String TOPIC = "my-topic";
 
@@ -84,7 +84,7 @@ public class KafkaApplicationTest {
             ListenableFuture<SendResult<Integer, String>> future = kafkaTemplate.send(record);
             RecordMetadata metadata = future.get().getRecordMetadata();
             log.info("发送消息：{}，分区：{}，偏移量：{}", msg.getMsg(), metadata.partition(), metadata.offset());
-            Thread.sleep(2000);
+            MyUtil.sleep(2);
         }
     }
 

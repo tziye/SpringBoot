@@ -15,7 +15,7 @@ import org.springframework.data.redis.core.GeoOperations;
 import java.util.List;
 
 @Slf4j
-public class GeoOperationsTest extends RedisApplicationTest {
+class GeoOperationsTest extends RedisApplicationTest {
 
     GeoOperations<String, Object> geoOpts;
 

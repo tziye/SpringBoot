@@ -1,5 +1,6 @@
 package com.core.util;
 
+import com.common.util.MyUtil;
 import com.core.ApplicationTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -7,13 +8,11 @@ import org.springframework.util.backoff.BackOffExecution;
 import org.springframework.util.backoff.ExponentialBackOff;
 import org.springframework.util.backoff.FixedBackOff;
 
-import java.util.concurrent.TimeUnit;
-
 @Slf4j
 class BackOffTest extends ApplicationTest {
 
     @Test
-    void exponential() throws InterruptedException {
+    void exponential() {
         ExponentialBackOff backOff = new ExponentialBackOff();
         // 初始间隔
         backOff.setInitialInterval(2000);
@@ -29,14 +28,14 @@ class BackOffTest extends ApplicationTest {
         long waitInterval = exec.nextBackOff();
         int i = 1;
         do {
-            TimeUnit.MILLISECONDS.sleep(waitInterval);
+            MyUtil.sleepMilli(waitInterval);
             log.info("等待：{}，重试：{}", waitInterval, i++);
             waitInterval = exec.nextBackOff();
         } while (waitInterval != BackOffExecution.STOP);
     }
 
     @Test
-    void fixed() throws InterruptedException {
+    void fixed() {
         FixedBackOff backOff = new FixedBackOff();
         backOff.setInterval(2000);
         backOff.setMaxAttempts(5);
@@ -46,7 +45,7 @@ class BackOffTest extends ApplicationTest {
         long waitInterval = exec.nextBackOff();
         int i = 1;
         do {
-            TimeUnit.MILLISECONDS.sleep(waitInterval);
+            MyUtil.sleepMilli(waitInterval);
             log.info("等待：{}，重试：{}", waitInterval, i++);
             waitInterval = exec.nextBackOff();
         } while (waitInterval != BackOffExecution.STOP);

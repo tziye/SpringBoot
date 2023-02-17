@@ -1,7 +1,7 @@
 package com.redis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
@@ -34,7 +34,7 @@ import javax.annotation.Resource;
 @ActiveProfiles("unit")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "spring.main.allow-bean-definition-overriding=true")
-public class RedisApplicationTest {
+class RedisApplicationTest {
 
     @TestConfiguration
     static class RedisConfig {
@@ -64,8 +64,8 @@ public class RedisApplicationTest {
     @Resource
     RedisTemplate<String, Object> redisTemplate;
 
-    @AfterEach
-    void downForAll() {
+    @BeforeEach
+    void setUpAll() {
         RedisConnection connection = factory.getConnection();
         log.info("Size: {}", connection.dbSize());
         connection.flushDb();

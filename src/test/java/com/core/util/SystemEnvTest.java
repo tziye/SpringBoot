@@ -17,7 +17,7 @@ class SystemEnvTest extends ApplicationTest {
     void getEnv() {
         log.info("获取系统环境变量==========");
         Map<String, String> envMap = System.getenv();
-        envMap.entrySet().forEach(entry -> log.info(entry.getKey() + ":" + entry.getValue()));
+        envMap.forEach((key, value) -> log.info(key + ":" + value));
     }
 
     /**
@@ -27,7 +27,7 @@ class SystemEnvTest extends ApplicationTest {
     void getProperties() {
         log.info("获取Jvm变量==========");
         Properties pros = System.getProperties();
-        pros.entrySet().forEach(entry -> log.info(entry.getKey() + ":" + entry.getValue()));
+        pros.forEach((key, value) -> log.info(key + ":" + value));
     }
 
 }

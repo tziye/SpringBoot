@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisLocker {
 
     @Autowired(required = false)
-     RedisTemplate<String, Object> redisTemplate;
+    RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 加锁

@@ -1,6 +1,6 @@
 package com.redis;
 
-import com.util.MyUtil;
+import com.common.util.MyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,9 @@ import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.types.Expiration;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class ConnectionTest extends RedisApplicationTest {
+class ConnectionTest extends RedisApplicationTest {
 
     String KEY_PATTERN = K1 + "*";
     RedisConnection connection;
@@ -24,7 +23,7 @@ public class ConnectionTest extends RedisApplicationTest {
         connection = factory.getConnection();
     }
 
-    private void mockData(int size) {
+    void mockData(int size) {
         for (var i = 0; i < size; i++) {
             connection.set((K1 + "-" + i).getBytes(), UUID.randomUUID().toString().getBytes(),
                     Expiration.seconds(100), RedisStringCommands.SetOption.UPSERT);
@@ -57,20 +56,20 @@ public class ConnectionTest extends RedisApplicationTest {
     }
 
     @Test
-    void expire() throws InterruptedException {
+    void expire() {
         List<byte[]> keys = getKeys();
         byte[] key1 = keys.get(0);
         connection.expire(key1, 2L);
-        TimeUnit.SECONDS.sleep(2);
+        MyUtil.sleep(2);
         log.info("key1 exists: {}", connection.exists(key1));
 
         byte[] key2 = keys.get(1);
         connection.expire(key2, 2L);
-        TimeUnit.SECONDS.sleep(1);
+        MyUtil.sleep(2);
         log.info("key2 ttl: {}", connection.ttl(key2));
         connection.persist(key2);
         log.info("key2 ttl: {}", connection.ttl(key2));
-        TimeUnit.SECONDS.sleep(1);
+        MyUtil.sleep(2);
         log.info("key2 exists: {}", connection.exists(key2));
     }
 
@@ -94,7 +93,7 @@ public class ConnectionTest extends RedisApplicationTest {
     }
 
     @Test
-    void lock() throws InterruptedException {
+    void lock() {
         String key = "Watch-Lock";
         byte[] lock = key.getBytes();
         connection.set(lock, UUID.randomUUID().toString().getBytes());
@@ -104,7 +103,7 @@ public class ConnectionTest extends RedisApplicationTest {
         connection.set(lock, UUID.randomUUID().toString().getBytes());
         connection.multi();
         connection.set((key + "-" + 0).getBytes(), UUID.randomUUID().toString().getBytes());
-        TimeUnit.SECONDS.sleep(2);
+        MyUtil.sleep(2);
         connection.set((key + "-" + 1).getBytes(), UUID.randomUUID().toString().getBytes());
         List<Object> result = connection.exec();
         if (Objects.isNull(result)) {

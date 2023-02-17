@@ -1,7 +1,7 @@
 package com.core.util;
 
 import com.core.ApplicationTest;
-import com.pojo.entity.User;
+import com.core.jpa.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
@@ -163,19 +163,20 @@ class SpringUtilsTest extends ApplicationTest {
     /**
      * 文件
      */
-    private static final String PATH = "src/test/resources/";
+    static String PATH = "src/test/resources/";
+    static String TARGET = "target/";
 
     @Test
     void fileCopyUtils() throws IOException {
         log.info("测试FileCopyUtils=========");
-        log.info("{}", FileCopyUtils.copy(new File(PATH + "test.txt"), new File(PATH + "test1.txt")));
+        log.info("{}", FileCopyUtils.copy(new File(PATH + "test.txt"), new File(TARGET + "test.txt")));
     }
 
     @Test
     void fileSystemUtils() throws IOException {
         log.info("测试FileSystemUtils=========");
-        FileSystemUtils.copyRecursively(new File(PATH + "test.txt"), new File(PATH + "test2.txt"));
-        FileSystemUtils.deleteRecursively(new File(PATH + "test2.txt"));
+        FileSystemUtils.copyRecursively(new File(PATH + "test.txt"), new File(TARGET + "test.txt"));
+        FileSystemUtils.deleteRecursively(new File(PATH + "test.txt"));
     }
 
     @Test

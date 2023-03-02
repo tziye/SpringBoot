@@ -8,7 +8,6 @@ import com.dto.GenderEnum;
 import com.dto.UserDto;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ class RepositoryTest extends ApplicationTest {
 
     @BeforeEach
     void setup() {
+        userRepository.deleteAll();
         List<User> userList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             User user = User.builder()
@@ -37,11 +37,6 @@ class RepositoryTest extends ApplicationTest {
             userList.add(user);
         }
         userRepository.saveAll(userList);
-    }
-
-    @AfterEach
-    void down() {
-        userRepository.deleteAll();
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
-class OperateTest extends ZookeeperApplicationTest {
+class OperateTest extends ZkApplicationTest {
 
     @Test
     void transaction() throws Exception {

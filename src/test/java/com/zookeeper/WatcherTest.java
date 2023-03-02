@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Slf4j
-class WatcherTest extends ZookeeperApplicationTest implements Watcher {
+class WatcherTest extends ZkApplicationTest implements Watcher {
 
     @BeforeEach
     void before() throws Exception {

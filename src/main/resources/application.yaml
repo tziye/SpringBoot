@@ -11,6 +11,11 @@ server:
     connection-timeout: 5000
     keep-alive-timeout: 10000
     max-keep-alive-requests: 100
+  ssl:
+    key-store: classpath:security/keystore.p12
+    key-store-password: 123456
+    keyStoreType: JKS
+
 
 spring:
   application:
@@ -66,6 +71,7 @@ logging:
       max-history: 5
       total-size-cap: 1GB
       clean-history-on-start: true
+
 
 # jwt
 jwt:

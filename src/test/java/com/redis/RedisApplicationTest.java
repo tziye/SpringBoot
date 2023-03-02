@@ -32,9 +32,8 @@ import javax.annotation.Resource;
         ElasticsearchDataAutoConfiguration.class, ElasticsearchRepositoriesAutoConfiguration.class})
 @Import(RedisApplicationTest.RedisConfig.class)
 @ActiveProfiles("unit")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = "spring.main.allow-bean-definition-overriding=true")
-class RedisApplicationTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class RedisApplicationTest {
 
     @TestConfiguration
     static class RedisConfig {
@@ -60,9 +59,9 @@ class RedisApplicationTest {
     }
 
     @Autowired
-    RedisConnectionFactory factory;
+    public RedisConnectionFactory factory;
     @Resource
-    RedisTemplate<String, Object> redisTemplate;
+    public RedisTemplate<String, Object> redisTemplate;
 
     @BeforeEach
     void setUpAll() {

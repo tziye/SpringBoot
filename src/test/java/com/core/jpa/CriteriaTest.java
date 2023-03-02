@@ -24,7 +24,7 @@ class CriteriaTest extends RepositoryTest {
     EntityManager entityManager;
 
     @Test
-    void query() {
+    void specification() {
         Page<User> page = userRepository.findAll((Specification<User>) (root, query, criteria) -> query
                 .where(criteria.and(
                         criteria.or(criteria.le(root.get("id"), 40), criteria.gt(root.get("id"), 60)),

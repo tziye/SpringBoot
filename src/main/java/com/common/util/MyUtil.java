@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +33,10 @@ public class MyUtil {
         }
     }
 
+    public static Map toMap(Object object) {
+        return parse(toString(object), Map.class);
+    }
+
     public static <T> T parse(String str, Class<T> target) {
         try {
             return objectMapper.readValue(str, target);
@@ -41,7 +46,11 @@ public class MyUtil {
         }
     }
 
-    public static <T> List<T> jsonToList(String json, Class<T> clazz) {
+    public static <T> T parse(Map map, Class<T> target) {
+        return parse(toString(map), target);
+    }
+
+    public static <T> List<T> parseList(String json, Class<T> clazz) {
         JavaType type = objectMapper.getTypeFactory().constructParametricType(List.class, clazz);
         try {
             return (List) objectMapper.readValue(json, type);

@@ -1,30 +1,30 @@
 ### request
-GET http://127.0.0.1:9999/request/limit?name=tyf&age=18
+GET https://127.0.0.1:9999/request/limit?name=tyf&age=18
 content-type: application/json
 myHeader: big
 
 ###
-GET http://127.0.0.1:9999/request/servlet
+GET https://127.0.0.1:9999/request/servlet
 
 ###
-GET http://127.0.0.1:9999/request/param?id=1&name=tyf&time=Mon Oct 29 17:16:04 CST 2018
+GET https://127.0.0.1:9999/request/param?id=1&name=tyf&time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-GET http://127.0.0.1:9999/request/paramObject?id=1&name=tyf&age=25&time=Mon Oct 29 17:16:04 CST 2018
+GET https://127.0.0.1:9999/request/paramObject?id=1&name=tyf&age=25&time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-GET http://127.0.0.1:9999/request/url/p1/p2
+GET https://127.0.0.1:9999/request/url/p1/p2
 
 ###
-GET http://127.0.0.1:9999/request/urlMap/p1/p2
+GET https://127.0.0.1:9999/request/urlMap/p1/p2
 
 ###
-GET http://127.0.0.1:9999/request/header
+GET https://127.0.0.1:9999/request/header
 content-type: application/json
 X-Custom-Header: Mon Oct 29 17:16:04 CST 2018
 
 ###
-POST http://127.0.0.1:9999/request/form
+POST https://127.0.0.1:9999/request/form
 content-type: application/x-www-form-urlencoded
 
 id=1
@@ -35,7 +35,7 @@ id=1
 &time=Mon Oct 29 17:16:04 CST 2018
 
 ###
-POST http://127.0.0.1:9999/request/json
+POST https://127.0.0.1:9999/request/json
 content-type: application/json
 
 {
@@ -48,7 +48,7 @@ content-type: application/json
 }
 
 ###
-POST http://127.0.0.1:9999/request/entity
+POST https://127.0.0.1:9999/request/entity
 content-type: application/json
 
 {
@@ -61,19 +61,19 @@ content-type: application/json
 }
 
 ### response
-GET http://127.0.0.1:9999/response/
+GET https://127.0.0.1:9999/response/
 
 ###
-GET http://127.0.0.1:9999/response/board
+GET https://127.0.0.1:9999/response/board
 
 ###
-GET http://127.0.0.1:9999/response/user1/1
+GET https://127.0.0.1:9999/response/user1/1
 
 ###
-GET http://127.0.0.1:9999/response/user2/2
+GET https://127.0.0.1:9999/response/user2/2
 
 ### valid
-POST http://127.0.0.1:9999/valid/validDto
+POST https://127.0.0.1:9999/valid/validDto
 content-type: application/json
 
 {
@@ -86,25 +86,25 @@ content-type: application/json
 }
 
 ###
-POST http://127.0.0.1:9999/valid/validParam
+POST https://127.0.0.1:9999/valid/validParam
 content-type: application/x-www-form-urlencoded
 
 id=1
 &name=tyf
 
 ###
-POST http://127.0.0.1:9999/valid/validAuth
+POST https://127.0.0.1:9999/valid/validAuth
 
 ### download
-GET http://127.0.0.1:9999/file/download
+GET https://127.0.0.1:9999/file/download
 
 ### Security
-GET http://127.0.0.1:9999/security/token
-Authorization: Basic admin:123456
+GET https://127.0.0.1:9999/security/token
+Authorization: Basic YWRtaW46MTIzNDU2
 
 ###
-GET http://127.0.0.1:9999/security/hello
-Authorization: bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NzYyOTM1MTUsImlhdCI6MTY3NjI1NzUxNSwic2NvcGUiOiJhcHAifQ.mCUR6XFj63eURVSwmINfw4laheB0fzfO3Ip3DkaNXL1u50WyirIr6xtX4cxc9fDYTpPaS18LSbvkJPFxIlCUf_Xu-8TFsCTWKSwPR_Ph1K22EewDqangkQwF7uTzAOpx7qwYpPgvPcWICvhrrh6KZNqJPQUm0fXfmRxHY2v71hJXl0CtXJ9zYiZNzcWRyb3Q5k5e0IWE1ITnSedVuAHEbCQlsUuoPT27zIWvpG1RO9uc-PFp4wkWFvPHQaJX3yqijbF5kcGLaxTTN7EoljpUCfqjoTSqliOQzktauXTSsAJJMWnAE7CWtDIc7Yxvfv_HmW9qk-_0P9j91amxljn7WQ
+GET https://127.0.0.1:9999/security/hello
+Authorization: bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2NzY5ODk4NzksImlhdCI6MTY3Njk1Mzg3OSwic2NvcGUiOiJhcHAifQ.cXBwaOcOuidUXFRgKgAg2g0IkJeU8df3UpV7V8QgtpVgW6cTKzEwaLkzc7_VF8_41C9kq8t3FikQ50Df3_A5EdMvFG5AkfBusli8vUQziBPfLaIBmsNZpUqViWkiZubZER9p3hJDAg2tq4hdKUx4a4XmC-NPe5recnM-M0MfJ8k3rtrVCTwbPSgZuGDl3Hmv6eCz46N77IYRHKrVyJieVZZyI6Ye3vsyaiSGSvgAzzF8wJQRLoWZSiPKSuE6QBaHPys71YKEtZwWLYH1SsNA8MMOx8Ia3cFGm4eGFQsn4tja4jXc6vaXW4v0chhyu_EYNepUJp8L67p5fyd8a0DfsA
 Content-Type: application/x-www-form-urlencoded
 
 ###

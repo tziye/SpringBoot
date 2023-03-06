@@ -33,6 +33,4 @@ public class ApplicationTest {
 
     @Autowired
     protected ApplicationContext applicationContext;
-    @Autowired
-    protected MockMvc mvc;
 }

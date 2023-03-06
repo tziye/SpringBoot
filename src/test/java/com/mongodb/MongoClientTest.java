@@ -73,17 +73,17 @@ class MongoClientTest {
 
         List<Book> list = new ArrayList<>();
         bookCollection.find(
-                Updates.combine(
-                        Filters.text("Spring Framework"),
-                        Filters.size("volumeInfo.authors", 1),
-                        Filters.eq("volumeInfo.printType", "BOOK"),
-                        Filters.in("volumeInfo.language", "en", "de"),
-                        Filters.eq("volumeInfo.categories", "Computers"),
-                        Filters.and(Filters.gt("volumeInfo.publishedDate", MyUtil.toDate("2005-01-01")),
-                                Filters.lt("volumeInfo.publishedDate", MyUtil.toDate("2015-01-01"))),
-                        Filters.elemMatch("volumeInfo.industryIdentifiers",
-                                Filters.eq("type", "ISBN_10")),
-                        Filters.exists("saleInfo.listPrice.amount")))
+                        Updates.combine(
+                                Filters.text("Spring Framework"),
+                                Filters.size("volumeInfo.authors", 1),
+                                Filters.eq("volumeInfo.printType", "BOOK"),
+                                Filters.in("volumeInfo.language", "en", "de"),
+                                Filters.eq("volumeInfo.categories", "Computers"),
+                                Filters.and(Filters.gt("volumeInfo.publishedDate", MyUtil.toDate("2005-01-01")),
+                                        Filters.lt("volumeInfo.publishedDate", MyUtil.toDate("2015-01-01"))),
+                                Filters.elemMatch("volumeInfo.industryIdentifiers",
+                                        Filters.eq("type", "ISBN_10")),
+                                Filters.exists("saleInfo.listPrice.amount")))
                 .projection(new BasicDBObject().append("volumeInfo.title", 1)
                         .append("volumeInfo.authors", 1)
                         .append("volumeInfo.printType", 1)

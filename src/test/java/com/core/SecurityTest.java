@@ -20,7 +20,7 @@ class SecurityTest extends ApplicationTest {
     @Test
     void test() throws Exception {
         MvcResult result = mvc.perform(get("/security/token")
-                .with(httpBasic("admin", "123456")))
+                        .with(httpBasic("admin", "123456")))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -28,7 +28,7 @@ class SecurityTest extends ApplicationTest {
         log.info("Token: {}", token);
 
         mvc.perform(get("/security/hello")
-                .header("Authorization", "Bearer " + token))
+                        .header("Authorization", "Bearer " + token))
                 .andExpect(content().string("Hello, admin!"));
     }
 }

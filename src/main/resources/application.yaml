@@ -24,17 +24,17 @@ spring:
     active: dev  # 当前环境
   main:
     lazy-initialization: false  # 是否懒加载bean
-  session:  # session配置
+  session: # session配置
     store-type: hazelcast
     timeout: 60
     hazelcast:
       map-name: session
       flush-mode: ON_SAVE
-  jackson:  # jackson配置
+  jackson: # jackson配置
     time-zone: GMT+8
     default-property-inclusion: NON_NULL
     date-format: yyyy-MM-dd HH:mm:ss
-  thymeleaf:  # thymeleaf配置
+  thymeleaf: # thymeleaf配置
     prefix: classpath:/templates/
     cache: false
     suffix: .html

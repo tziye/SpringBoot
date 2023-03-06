@@ -27,9 +27,9 @@ class CriteriaTest extends RepositoryTest {
     void specification() {
         Page<User> page = userRepository.findAll((Specification<User>) (root, query, criteria) -> query
                 .where(criteria.and(
-                        criteria.or(criteria.le(root.get("id"), 40), criteria.gt(root.get("id"), 60)),
-                        criteria.in(root.get("name")).value("A").value("B"),
-                        criteria.between(root.get("age"), 18, 28)),
+                                criteria.or(criteria.le(root.get("id"), 40), criteria.gt(root.get("id"), 60)),
+                                criteria.in(root.get("name")).value("A").value("B"),
+                                criteria.between(root.get("age"), 18, 28)),
                         criteria.lessThanOrEqualTo(root.get("time"), new Date()),
                         criteria.isTrue(root.get("enabled")),
                         criteria.equal(root.get("gender"), GenderEnum.BOY))

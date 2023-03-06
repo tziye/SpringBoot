@@ -33,7 +33,7 @@ public class Application {
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-        //同时启用http（8080）、https（8443）两个端口
+        // 同时启用http（8080）、https（8443）两个端口
         connector.setScheme("http");
         connector.setSecure(false);
         connector.setPort(8080);
